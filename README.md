@@ -251,14 +251,14 @@ Configuration uses environment variables only (no config files):
 
 ```bash
 # PostgreSQL Connection
-export POSTGRES_HOST=localhost           # default: localhost
-export POSTGRES_PORT=5432               # default: 5432
-export POSTGRES_DB=savant_context       # default: savant_context
-export POSTGRES_USER=$USER              # default: current user
-export POSTGRES_PASSWORD=               # optional
+export POSTGRES_HOST=localhost                   # default: localhost
+export POSTGRES_PORT=5432                       # default: 5432
+export POSTGRES_DB=savant-context-standalone   # default: savant-context-standalone
+export POSTGRES_USER=$USER                      # default: current user
+export POSTGRES_PASSWORD=                       # optional
 
 # Logging
-export LOG_LEVEL=info                   # default: info
+export LOG_LEVEL=info                           # default: info
 ```
 
 ## Usage Examples
