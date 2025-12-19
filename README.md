@@ -58,7 +58,19 @@ pip install -e .
 
 ## Quick Start
 
-### 1. Initialize the Database
+### Quick Launch (Shortcut)
+
+Start the MCP server immediately:
+
+```bash
+savant
+```
+
+This is the fastest way to get the server running.
+
+### Full Setup
+
+#### 1. Initialize the Database
 
 Creates the PostgreSQL database and schema automatically:
 
@@ -66,7 +78,7 @@ Creates the PostgreSQL database and schema automatically:
 savant-context db setup
 ```
 
-### 2. Index Your First Repository
+#### 2. Index Your First Repository
 
 ```bash
 savant-context index repo ./path/to/repo
@@ -78,7 +90,7 @@ Or with a custom name:
 savant-context index repo ./path/to/repo --name my-project
 ```
 
-### 3. Check What's Indexed
+#### 3. Check What's Indexed
 
 ```bash
 savant-context status
@@ -86,13 +98,19 @@ savant-context status
 
 Shows all repositories with file counts, chunk counts, and last indexed time.
 
-### 4. Start the MCP Server
+#### 4. Start the MCP Server
+
+```bash
+savant
+```
+
+Or use the full command:
 
 ```bash
 savant-context run
 ```
 
-The server listens on stdio transport, ready for MCP clients.
+Both launch the server listening on stdio transport, ready for MCP clients.
 
 ## CLI Commands Reference
 
