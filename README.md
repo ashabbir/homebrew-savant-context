@@ -58,6 +58,22 @@ pip install -e .
 
 ## Quick Start
 
+### View Help & Banner
+
+```bash
+savant-context
+```
+
+Shows the ASCII art banner with version info.
+
+### View Documentation
+
+```bash
+savant-context readme
+```
+
+Displays the full README documentation.
+
 ### Quick Launch (Shortcut)
 
 Start the MCP server immediately:
@@ -159,6 +175,23 @@ savant-context status
 ```bash
 # Start MCP server on stdio transport
 savant-context run
+
+# Or use the shortcut
+savant
+```
+
+### Help & Documentation
+
+```bash
+# Show banner and version info
+savant-context
+
+# Display full README
+savant-context readme
+
+# Show help for any command
+savant-context --help
+savant-context db --help
 ```
 
 ## MCP Tools
