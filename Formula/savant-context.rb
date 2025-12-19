@@ -13,12 +13,16 @@ class SavantContext < Formula
   def install
     # Install Python package and dependencies
     virtualenv_install_with_resources
-
-    # Create symlink for 'savant' shortcut
-    bin.install_symlink "savant-context" => "savant"
   end
 
   def post_install
+    # Create 'savant' symlink/wrapper for the shortcut
+    (bin/"savant").write <<-EOS
+#!/bin/bash
+exec "#{opt_bin}/savant-context" run
+    EOS
+    (bin/"savant").chmod 0755
+
     # Create data directory if needed
     (var/"savant-context").mkpath
   end
