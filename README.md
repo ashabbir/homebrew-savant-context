@@ -81,13 +81,21 @@ savant-context db setup
 #### 2. Index Your First Repository
 
 ```bash
-savant-context index repo ./path/to/repo
+# From the repository directory
+cd ~/my-project
+savant-context index repo
+```
+
+Or from anywhere with a path:
+
+```bash
+savant-context index repo ~/my-project
 ```
 
 Or with a custom name:
 
 ```bash
-savant-context index repo ./path/to/repo --name my-project
+savant-context index repo ~/my-project --name my-project
 ```
 
 #### 3. Check What's Indexed
@@ -133,7 +141,10 @@ savant-context db destroy
 ### Repository Management
 
 ```bash
-# Index a repository
+# Index current directory
+savant-context index repo
+
+# Index specific path
 savant-context index repo ./path/to/repo
 
 # Index with custom name
