@@ -16,13 +16,6 @@ class SavantContext < Formula
   end
 
   def post_install
-    # Create 'savant' symlink/wrapper for the shortcut
-    (bin/"savant").write <<-EOS
-#!/bin/bash
-exec "#{opt_bin}/savant-context" run
-    EOS
-    (bin/"savant").chmod 0755
-
     # Create data directory if needed
     (var/"savant-context").mkpath
   end
