@@ -4,15 +4,19 @@ Install [Savant Context](https://github.com/ashabbir/context) using Homebrew.
 
 ## Installation
 
+### With GitHub Token (Recommended)
+
 ```bash
-brew tap ashabbir/savant-context https://github.com/ashabbir/homebrew-savant-context
+export HOMEBREW_GITHUB_API_TOKEN=your_github_token
+brew tap ashabbir/savant-context
 brew install savant-context
 ```
 
-Or if you have a GitHub token configured:
+### Manual URL Specification
 
 ```bash
-brew tap ashabbir/savant-context
+export HOMEBREW_GITHUB_API_TOKEN=your_github_token
+brew tap ashabbir/savant-context https://github.com/ashabbir/homebrew-savant-context
 brew install savant-context
 ```
 
