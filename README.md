@@ -125,6 +125,9 @@ savant-context db dump ./backup.dump
 
 # Restore from a backup
 savant-context db restore ./backup.dump
+
+# Destroy all indexed data (permanent!)
+savant-context db destroy
 ```
 
 ### Repository Management
