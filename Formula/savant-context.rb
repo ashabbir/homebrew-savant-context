@@ -18,6 +18,10 @@ class SavantContext < Formula
   def post_install
     # Create data directory if needed
     (var/"savant-context").mkpath
+
+    # Ensure 'savant' shortcut is available by creating a symlink
+    # since the virtualenv build sometimes doesn't pick up all entry points
+    bin.install_symlink "savant-context" => "savant"
   end
 
   test do
