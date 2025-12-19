@@ -5,8 +5,7 @@ A standalone MCP (Model Context Protocol) server with PostgreSQL-based code inde
 **Install via Homebrew:**
 
 ```bash
-export HOMEBREW_GITHUB_API_TOKEN=your_github_token
-brew tap ashabbir/savant-context
+brew tap ashabbir/savant-context https://github.com/ashabbir/homebrew-savant-context
 brew install savant-context
 ```
 
@@ -36,11 +35,7 @@ Savant Context lets you index your code repositories and search across all your 
 #### Option 1: Homebrew (Recommended)
 
 ```bash
-# Set your GitHub token for private repo access
-export HOMEBREW_GITHUB_API_TOKEN=your_github_token
-
-# Add the tap and install
-brew tap ashabbir/savant-context
+brew tap ashabbir/savant-context https://github.com/ashabbir/homebrew-savant-context
 brew install savant-context
 ```
 
@@ -267,49 +262,6 @@ Restart Claude Desktop to connect to the MCP server.
 - `content_vector` (tsvector) - PostgreSQL FTS vector for search
 - `created_at` (TIMESTAMP) - Creation time
 
-## Authentication for Private Repository
-
-The source code repository is private. To install via Homebrew or access releases, you need to authenticate:
-
-### Option 1: Environment Variable (Temporary)
-
-```bash
-export HOMEBREW_GITHUB_API_TOKEN=your_github_token
-brew tap ashabbir/savant-context
-brew install savant-context
-```
-
-### Option 2: Git Config (Permanent)
-
-```bash
-git config --global url."https://<token>@github.com/".insteadOf "https://github.com/"
-brew tap ashabbir/savant-context
-brew install savant-context
-```
-
-### Option 3: .netrc File (Permanent & Secure)
-
-Create `~/.netrc`:
-
-```
-machine github.com
-login your_username
-password your_github_token
-```
-
-Set permissions:
-
-```bash
-chmod 600 ~/.netrc
-```
-
-Then install:
-
-```bash
-brew tap ashabbir/savant-context
-brew install savant-context
-```
-
 ## Troubleshooting
 
 ### Database Connection Error
@@ -342,18 +294,6 @@ sudo apt-get install postgresql-client
 # Fedora
 sudo dnf install postgresql
 ```
-
-### Token Not Working
-
-**Error:** `Could not download` or `Not Found`
-
-**Solution:** Verify your token has the correct scopes:
-
-```bash
-curl -H "Authorization: token YOUR_TOKEN" https://api.github.com/user
-```
-
-Token should have `repo` scope.
 
 ## Architecture
 
