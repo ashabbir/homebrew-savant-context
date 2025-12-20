@@ -27,7 +27,7 @@ class SavantContext < Formula
 
   resource "pygments" do
     url "https://files.pythonhosted.org/packages/55/59/8bccf4157baf10a8e2866abde872bde1d54544a0b82f3839cba8ab7e5738/pygments-2.17.2.tar.gz"
-    sha256 "da46cec9d78a8c6235ccf8d4788a5765d8007b432ac3ba6e3e54b5cae5e9fefd"
+    sha256 "81a55aa30d7f478417c04d9eed2d4bf205fa3563b23251520326083789b25b8c"
   end
 
   def install
