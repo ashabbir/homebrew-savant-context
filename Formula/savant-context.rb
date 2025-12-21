@@ -31,11 +31,13 @@ class SavantContext < Formula
   def install
     odie "Python dependencies not installed. See instructions above." unless check_python_dependencies
 
-    # Copy the tarball contents to the installation prefix
-    system "cp -r . #{prefix}"
+    # Install the Python package to the prefix
+    system "python3.10 -m pip install --target #{prefix}/lib/python3.10/site-packages ."
 
-    # Install the Python package
-    system "#{Formula["python@3.10"].bin}/python3.10 -m pip install --target #{prefix}/lib/python3.10/site-packages #{prefix}"
+    # Create bin wrapper for the CLI
+    (bin/"savant-context").write_env_script("python3.10", %W[
+      -m savant_context.cli
+    ])
   end
 
   def post_install
