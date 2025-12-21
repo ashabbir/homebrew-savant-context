@@ -14,7 +14,7 @@ class SavantContext < Formula
     missing = []
 
     required_packages.each do |pkg|
-      result = system("#{python} -c 'import #{pkg.gsub('-', '_')}'", [:out, :err] => File::NULL)
+      result = system("#{python} -c 'import #{pkg.gsub('-', '_')}' 2>/dev/null")
       missing << pkg unless result
     end
 
@@ -23,7 +23,7 @@ class SavantContext < Formula
     puts "\n❌ Missing Python dependencies for savant-context:"
     missing.each { |pkg| puts "  - #{pkg}" }
     puts "\nInstall them with:"
-    puts "  python3.10 -m pip install #{missing.join(' ')}"
+    puts "  python3.10 -m pip install --break-system-packages #{missing.join(' ')}"
     puts "\nThen retry: brew install savant-context\n\n"
     false
   end
