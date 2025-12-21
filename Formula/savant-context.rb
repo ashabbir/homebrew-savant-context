@@ -35,9 +35,13 @@ class SavantContext < Formula
     system "python3.10 -m pip install --target #{prefix}/lib/python3.10/site-packages ."
 
     # Create bin wrapper for the CLI
-    (bin/"savant-context").write_env_script("python3.10", %W[
-      -m savant_context.cli
-    ])
+    bin.mkpath
+    (bin/"savant-context").write <<~EOS
+      #!/bin/bash
+      export PYTHONPATH="#{prefix}/lib/python3.10/site-packages:$PYTHONPATH"
+      exec python3.10 -m savant_context.cli "$@"
+    EOS
+    (bin/"savant-context").chmod 0755
   end
 
   def post_install
