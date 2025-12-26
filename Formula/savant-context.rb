@@ -1,4 +1,6 @@
 class SavantContext < Formula
+  include Language::Python::Virtualenv
+
   desc "Context MCP server with PostgreSQL-based code indexer"
   homepage "https://github.com/ashabbir/context"
   url "https://github.com/ashabbir/homebrew-savant-context/raw/main/savant-context-1.0.0.tar.gz"
@@ -8,40 +10,13 @@ class SavantContext < Formula
   depends_on "python@3.10"
   depends_on "postgresql@15"
 
-  def check_python_dependencies
-    python = "python3.10"
-    required_packages = ["click", "psycopg", "pathspec", "pygments"]
-    missing = []
-
-    required_packages.each do |pkg|
-      result = system("#{python} -c 'import #{pkg.gsub('-', '_')}' 2>/dev/null")
-      missing << pkg unless result
-    end
-
-    return true if missing.empty?
-
-    puts "\n❌ Missing Python dependencies for savant-context:"
-    missing.each { |pkg| puts "  - #{pkg}" }
-    puts "\nInstall them with:"
-    puts "  python3.10 -m pip install --break-system-packages #{missing.join(' ')}"
-    puts "\nThen retry: brew install savant-context\n\n"
-    false
-  end
-
   def install
-    odie "Python dependencies not installed. See instructions above." unless check_python_dependencies
+    # Install package + resources into a virtualenv under libexec
+    virtualenv_install_with_resources
 
-    # Install the Python package to the prefix
-    system "python3.10 -m pip install --target #{prefix}/lib/python3.10/site-packages ."
-
-    # Create bin wrapper for the CLI
-    bin.mkpath
-    (bin/"savant-context").write <<~EOS
-      #!/bin/bash
-      export PYTHONPATH="#{prefix}/lib/python3.10/site-packages:$PYTHONPATH"
-      exec python3.10 -m savant_context.cli "$@"
-    EOS
-    (bin/"savant-context").chmod 0755
+    # Expose entry-point scripts on PATH
+    bin.install_symlink libexec/"bin/savant-context"
+    bin.install_symlink libexec/"bin/savant"
   end
 
   def post_install
@@ -52,6 +27,7 @@ class SavantContext < Formula
   test do
     system "#{bin}/savant-context", "--version"
     system "#{bin}/savant-context", "--help"
+    system "#{bin}/savant", "--help"
   end
 
   service do
